@@ -1,13 +1,13 @@
 # Fleet Mode
 
-**A measured doctrine for orchestrating AI agents — and knowing when not to.**
+**A measured doctrine for orchestrating AI agents, and knowing when not to.**
 
 ![Fleet Mode](assets/banner.png)
 
 Most "multi-agent" advice assumes more agents is better. It usually isn't. Fleet Mode is the
 opposite stance, run as a live [Claude Code](https://docs.claude.com/en/docs/claude-code) skill:
 **adding agents has a negative average payoff on most tasks, so you fan out only where it
-demonstrably earns it — and you keep the writes single-threaded and gated.**
+demonstrably earns it, and you keep the writes single-threaded and gated.**
 
 It's the operating mode behind [bow](https://github.com/Jott2121/bow) (an autonomous all-Claude
 chief-of-staff agent) and the builds it ships.
@@ -16,7 +16,7 @@ chief-of-staff agent) and the builds it ships.
 
 ## The four rules
 
-1. **Read-heavy work fans out.** Research, codebase/PR review, multi-file audits — parallel
+1. **Read-heavy work fans out.** Research, codebase/PR review, multi-file audits: parallel
    subagents in clean contexts, each returning a condensed summary. This is the *only* thing
    fan-out is for.
 2. **Writes stay single-threaded.** One agent makes the edit. Never fan out to edit in parallel.
@@ -32,17 +32,24 @@ decision with the real number.
 
 ## The gate (run in order)
 
-1. **Classify stakes** — trivial → light check, ship. non-trivial → full gate. irreversible → full
-   gate + human approval first.
-2. **Decide fan-out** (bias-to-NO) — single strong agent by default; fan out only for read-heavy,
+1. **Classify stakes.** trivial: light check, ship. non-trivial: full gate. irreversible: full
+   gate plus human approval first.
+2. **Decide fan-out (bias-to-NO).** Single strong agent by default; fan out only for read-heavy,
    parallelizable work that exceeds one context window.
 3. **Write single-threaded.**
-4. **QC gate** — deterministic checks, *then* an independent reviewer that tries to refute. Escalate
+4. **QC gate.** Deterministic checks, *then* an independent reviewer that tries to refute. Escalate
    high-stakes output to a different-model judge.
 5. **Human-gate MAJOR items.**
 6. **Log a receipt.**
 
 Full operational spec: [`SKILL.md`](SKILL.md).
+
+## Dependencies
+
+The skill references the `superpowers:*` skill family (for dispatching parallel agents and
+requesting independent review). If superpowers skills are unavailable, substitute: fan-out
+decisions manually, run tests before any model review, get a colleague to review independently.
+The receipt script has zero dependencies (Python stdlib only).
 
 ## Install (as a Claude Code skill)
 
@@ -59,7 +66,8 @@ python3 scripts/append_receipt.py \
   --why "cut timeout errors to zero in a 200-run soak" --metric errors --value 0
 ```
 
-Appends a tamper-friendly row to `KILLLOG.md` — the honest ledger of what you kept, killed, and why.
+Appends an append-only row to `KILLLOG.md`: the honest ledger of what you kept, killed, and why.
+See [`KILLLOG.md`](KILLLOG.md) for a sample of the format.
 
 ## Why it exists
 
@@ -72,4 +80,4 @@ swarms). It scales *to the task*, not to the hype.
 
 ## License
 
-MIT © 2026 Jeff Otterson
+MIT, copyright 2026 Jeff Otterson. See [LICENSE](LICENSE).
