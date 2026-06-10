@@ -30,6 +30,8 @@ Plus the two non-negotiables: **human-gate anything irreversible/MAJOR** (push, 
 real-money trade, mass-delete, new spend), and **log an honest receipt** of every kept/killed
 decision with the real number.
 
+![Fleet Mode receipt demo](assets/demo.gif)
+
 ## The gate (run in order)
 
 1. **Classify stakes.** trivial: light check, ship. non-trivial: full gate. irreversible: full
