@@ -12,6 +12,8 @@ demonstrably earns it, and you keep the writes single-threaded and gated.**
 It's the operating mode behind [bow](https://github.com/Jott2121/bow) (an autonomous all-Claude
 chief-of-staff agent) and the builds it ships.
 
+> 🧩 One layer of a five-repo [**cost-governance stack**](https://github.com/Jott2121/bow#the-system-a-cost-governance-stack) for operating AI agents cost-efficiently; [bow](https://github.com/Jott2121/bow) is the flagship that runs every layer in production.
+
 ---
 
 ## The four rules
