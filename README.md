@@ -1,5 +1,11 @@
 # Fleet Mode
 
+[![CI](https://github.com/Jott2121/fleet-mode/actions/workflows/ci.yml/badge.svg)](https://github.com/Jott2121/fleet-mode/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Jott2121/fleet-mode/actions/workflows/codeql.yml/badge.svg)](https://github.com/Jott2121/fleet-mode/actions/workflows/codeql.yml)
+[![Coverage](https://raw.githubusercontent.com/Jott2121/fleet-mode/python-coverage-comment-action-data/badge.svg)](https://github.com/Jott2121/fleet-mode/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+
 **A measured doctrine for orchestrating AI agents, and knowing when not to.**
 
 ![Fleet Mode](assets/banner.png)
@@ -81,6 +87,16 @@ The multi-agent discourse is full of impressive-sounding fan-out diagrams that, 
 single careful agent. Fleet Mode is the discipline that keeps the wins (parallel reading, independent
 review, hard gates) and drops the cargo-culting (parallel writers, self-grading, unbounded agent
 swarms). It scales *to the task*, not to the hype.
+
+## Reliability & security
+
+A doctrine about hard gates runs its own:
+
+- **Coverage-gated tests** — the receipt-writer script is tested on Python 3.11–3.12 and the build fails below the coverage floor (currently 92% covered).
+- **CodeQL** — `security-extended` static analysis on every push, PR, and weekly; findings surface in the Security tab.
+- **Pinned supply chain** — GitHub Actions pinned to commit SHAs, kept current by **Dependabot**.
+- **Branch protection** — `main` requires CI + CodeQL to pass before a merge.
+- **Disclosure policy** — see [SECURITY.md](SECURITY.md); private reporting is enabled.
 
 ## License
 
